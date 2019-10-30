@@ -17,3 +17,42 @@ for poet in engPoets:
     dictPoets[link] = { "english" : name }
 
 engPoets.close()
+
+# In[9]:
+
+
+hindiPoets = open("rekhta_poets_hindi.tsv","r",encoding="utf8") #used utf8 encoding - charmap issue
+for poet in hindiPoets:
+    poetInfo = poet.split("\t")
+    name = poetInfo[0].strip()
+    link = poetInfo[1].strip().split("?")[0]
+    poetObj = dictPoets.get(link)
+    if poetObj == None:
+        dictPoets[link]={"hindi":name}
+    else:
+        poetObj["hindi"]=name
+
+hindiPoets.close()
+
+# In[10]:
+
+
+urduPoets = open("rekhta_poets_urdu.tsv","r",encoding="utf8")
+
+for poet in urduPoets:
+    poetInfo = poet.split("\t")
+    name = poetInfo[0].strip()
+    link = poetInfo[1].strip().split("?")[0]
+    poetObj = dictPoets.get(link)
+    if poetObj == None:
+        dictPoets[link]={"urdu":name}
+    else:
+        poetObj["urdu"]=name
+
+urduPoets.close()
+
+
+# In[11]:
+
+
+print(dictPoets)
